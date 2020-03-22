@@ -54,6 +54,7 @@
 
     <!--mybatis generator-->
     <!-- https://mvnrepository.com/artifact/org.mybatis.generator/mybatis-generator-core -->
+    <!--mybatis生成器，逆向工程-->
     <dependency>
       <groupId>org.mybatis.generator</groupId>
       <artifactId>mybatis-generator-core</artifactId>
@@ -97,7 +98,6 @@
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.12</version>
-      <scope>test</scope>
     </dependency>
 
     <!--导入spring的单元测试模块-->
