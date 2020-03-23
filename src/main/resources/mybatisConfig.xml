@@ -12,5 +12,9 @@
     <typeAliases>
         <package name="com.JuneHua.domain"></package>
     </typeAliases>
+    
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor"></plugin>
+    </plugins>
 
 </configuration>

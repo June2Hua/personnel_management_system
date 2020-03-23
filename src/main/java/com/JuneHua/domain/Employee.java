@@ -14,6 +14,18 @@ public class Employee {
     //部门信息
     private Department department;
 
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "empId=" + empId +
+                ", empName='" + empName + '\'' +
+                ", gender='" + gender + '\'' +
+                ", email='" + email + '\'' +
+                ", dId=" + dId +
+                ", department=" + department +
+                '}';
+    }
+
     public Employee(Integer empId, String empName, String gender, String email, Integer dId) {
         this.empId = empId;
         this.empName = empName;

@@ -24,10 +24,10 @@
     <!--指定资源文件位置-->
     <context:property-placeholder location="classpath:jdbcConfig.properties"/>
     <!--配置数据源-->
-    <bean class="com.mchange.v2.c3p0.ComboPooledDataSource" id="dataSource">
-        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/mydb?useUnicode=true&amp;characterEncoding=utf-8"></property>
-        <property name="driverClass" value="com.mysql.jdbc.Driver"></property>
-        <property name="user" value="root"></property>
+    <bean class="com.alibaba.druid.pool.DruidDataSource" id="dataSource">
+        <property name="url" value="jdbc:mysql://localhost:3306/mydb?useUnicode=true&amp;characterEncoding=utf-8"></property>
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+        <property name="username" value="root"></property>
         <property name="password" value="123456"></property>
     </bean>
 
@@ -44,6 +44,12 @@
     <!--配置扫描器，将mybatis接口产生的代理对象加入到ioc容器中-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.JuneHua.dao"></property>
+    </bean>
+
+    <!--配置一个sqlSession，用于执行批量插入数据-->
+    <bean class="org.mybatis.spring.SqlSessionTemplate" id="sqlSession">
+        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactoryBean"></constructor-arg>
+        <constructor-arg name="executorType" value="BATCH"></constructor-arg>
     </bean>
 
     <!--配置事务管理器-->

@@ -9,14 +9,21 @@
 <html>
 <head>
     <title>Title</title>
+    <%
+        //        添加路径
+        pageContext.setAttribute("PATH", request.getContextPath());
+    %>
     <%--连接jQuery--%>
-    <script src="static/js/jquery-3.4.1.js"></script>
+    <script src="${PATH}/static/js/jquery-3.4.1.js"></script>
     <!-- Bootstrap -->
     <%--连接bootstrap--%>
-    <link href="static/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <link href="${PATH}/static/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="${PATH}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <button type="button" class="btn btn-success">按钮</button>
+    <div style="margin: 200px">
+        <a href="${PATH}/emps"><button type="button" class="btn btn-success" >按钮</button></a>
+    </div>
+
 </body>
 </html>

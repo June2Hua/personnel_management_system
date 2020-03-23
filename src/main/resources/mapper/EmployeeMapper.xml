@@ -16,7 +16,7 @@
   
   <!--定义联合查询的返回值-->
   <resultMap id="WithDeptResultMap" type="com.JuneHua.domain.Employee">
-    <id column="emp_id" property="empID" javaType="java.lang.Integer"/>
+    <id column="emp_id" property="empId" javaType="java.lang.Integer"/>
     <result column="emp_name" property="empName" javaType="java.lang.String"/>
     <result column="gender" property="gender" javaType="java.lang.String"/>
     <result column="email" property="email" javaType="java.lang.String"/>
@@ -93,6 +93,8 @@
     e.emp_id, e.emp_name, e.gender, e.email, e.d_id, d.dept_id, d.dept_name
   </sql>
 
+
+
   <!--定义新增的两个联合查询方法，用于查询部门信息（Employee关联Department）-->
   <!--List<Employee> selectByExampleWithDept(EmployeeExample example);-->
   <!--Employee selectByPrimaryKeyWithDept(Integer empId);-->
@@ -106,13 +108,14 @@
         on e.d_id = d.dept_id
           where emp_id = #{empId,jdbcType=INTEGER}
   </select>
+
   <select id="selectByExampleWithDept" resultMap="WithDeptResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="WithDept_Column_List" />
-    from tbl_emp left join tbl_dept on tbl_emp.d_id=tbl_dept.dept_id
+    from tbl_emp e left join tbl_dept d on e.d_id=d.dept_id
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
