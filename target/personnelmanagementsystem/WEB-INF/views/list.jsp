@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"  %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c" %>
 <html>
 <head>
     <title>人员列表</title>
@@ -53,26 +54,27 @@
                         <td>部门</td>
                         <td>操作</td>
                     </tr>
-                        <%--表格的标题栏--%>
-                        <tr>
-                            <td>1</td>
-                            <td>序号</td>
-                            <td>姓名</td>
-                            <td>性别</td>
-                            <td>邮箱</td>
-                            <td>部门</td>
-                            <td>
-                                <button type="button" class="btn btn-success btn-sm">
-                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                    插入
-                                </button>
-                                <button type="button" class="btn btn-danger btn-sm">
-                                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                                    插入
-                                </button>
-                            </td>
-                        </tr>
-
+                        <%--数据--%>
+                        <c:forEach items="${PageInfo.list}" var="element">
+                            <tr>
+                                <td>"${element.empId}"</td>
+                                <td>"${element.empId}"</td>
+                                <td>"${element.empName}"</td>
+                                <td>"${element.gender=="M"?"男":"女"}"</td>
+                                <td>"${element.email}"</td>
+                                <td>"${element.department.deptName}"</td>
+                                <td>
+                                    <button type="button" class="btn btn-success btn-sm">
+                                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                        插入
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-sm">
+                                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                        插入
+                                    </button>
+                                </td>
+                            </tr>
+                        </c:forEach>
                 </table>
             </div>
         </div>
@@ -80,34 +82,39 @@
         <%--页号相关信息--%>
         <div class="row">
             <div class="col-md-6">
-                分页信息：×××××
+                当前为：第${PageInfo.pageNum}页，共有${PageInfo.pages}页，共有${PageInfo.total}条记录
             </div>
             <%--分页条--%>
             <div class="col-md-6">
                 <nav aria-label="Page navigation">
                     <ul class="pagination">
                         <li>
-                            <a href="#" aria-label="Previous">
+                            <a href="${PATH}/emps?pn=1" aria-label="Previous">
                                 <span aria-hidden="true">首页</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#" aria-label="Previous">
+                            <a href="${PATH}/emps?pn=${PageInfo.pageNum==1?1:PageInfo.pageNum-1}" aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                         </li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
+
+                        <c:forEach items="#{PageInfo.navigatepageNums}" var="page">
+                            <c:if test="${page==PageInfo.pageNum}">
+                                <li class="active"><a href="${PATH}/emps?pn=${page}">${page}</a></li>
+                            </c:if>
+                            <c:if test="${page!=PageInfo.pageNum}">
+                                <li><a href="${PATH}/emps?pn=${page}">${page}</a></li>
+                            </c:if>
+                        </c:forEach>
+
                         <li>
-                            <a href="#" aria-label="Next">
+                            <a href="${PATH}/emps?pn=${PageInfo.pageNum==PageInfo.pages?PageInfo.pages:PageInfo.pageNum+1}" aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#" aria-label="Previous">
+                            <a href="${PATH}/emps?pn=${PageInfo.pages}" aria-label="Previous">
                                 <span aria-hidden="true">尾页</span>
                             </a>
                         </li>

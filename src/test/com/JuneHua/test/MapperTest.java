@@ -35,16 +35,16 @@ public class MapperTest {
     @Test
     public void testInsert(){
         System.out.println(departmentMapper);
-        departmentMapper.insert(new Department(7,"招生处"));
+//        departmentMapper.insert(new Department(7,"招生处"));
         System.out.println(employeeMapper);
 //        employeeMapper.insert(new Employee(1,"JuneHua","M","june2hua@qq.com",1));
         EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper.class);
-//        批量删除
-//        for (int i=0;i<30;i++){
-//            String uid= UUID.randomUUID().toString().substring(0,6)+i;
-//            mapper.insertSelective(new Employee(null,uid,"F",uid+"@gmail.com",2));
-//        }
-//        System.out.println("success");
+//        批量插入
+        for (int i=0;i<23;i++){
+            String uid= UUID.randomUUID().toString().substring(0,6)+i;
+            mapper.insertSelective(new Employee(null,uid,"F",uid+"@outlook.com",3));
+        }
+        System.out.println("success");
     }
 
     @Test

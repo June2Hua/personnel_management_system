@@ -15,7 +15,9 @@ public class EmployeeServiceImpl implements IEmployeeService{
 
     @Override
     public List<Employee> findAll() {
+        System.out.println("public class EmployeeServiceImpl implements IEmployeeService-----------");
         List<Employee> employees = employeeMapper.selectByExampleWithDept(null);
+        System.out.println("List<Employee> employees = employeeMapper.selectByExampleWithDept(null);");
         return employees;
     }
 }

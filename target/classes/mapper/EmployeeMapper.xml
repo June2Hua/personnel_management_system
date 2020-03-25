@@ -123,6 +123,7 @@
       order by ${orderByClause}
     </if>
   </select>
+
   <select id="selectByExample" parameterType="com.JuneHua.domain.EmployeeExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
